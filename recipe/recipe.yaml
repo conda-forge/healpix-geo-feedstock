@@ -2,49 +2,62 @@ context:
   name: healpix-geo
   version: "0.0.11"
 
-package:
-  name: ${{ name|lower }}
-  version: ${{ version }}
-
-source:
-  url: https://github.com/eopf-dggs/healpix-geo/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 3b929838f117c9456d8e90ac4ae6800a7a923c24710ddf2d886e2535b9266ea4
-
 build:
+  number: 1
+
   skip:
     - match(python, "<3.10")
-  script:
-    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
-    - python -m pip install . -vv --no-build-isolation --no-deps
-  number: 0
 
-requirements:
-  build:
-    - if: build_platform != target_platform
-      then:
+outputs:
+  - package:
+      name: ${{ name|lower }}
+      version: ${{ version }}
+
+    source:
+      url: https://github.com/eopf-dggs/healpix-geo/archive/refs/tags/v${{ version }}.tar.gz
+      sha256: 3b929838f117c9456d8e90ac4ae6800a7a923c24710ddf2d886e2535b9266ea4
+
+    build:
+      script:
+        - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+        - python -m pip install . -vv --no-build-isolation --no-deps
+
+    requirements:
+      build:
+        - if: build_platform != target_platform
+          then:
+            - python
+            - cross-python_${{ target_platform }}
+            - maturin >=1.7.0,<2.0
+        - cargo-bundle-licenses
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - ${{ compiler('rust') }}
+      host:
         - python
-        - cross-python_${{ target_platform }}
         - maturin >=1.7.0,<2.0
-    - cargo-bundle-licenses
-    - ${{ compiler('c') }}
-    - ${{ stdlib('c') }}
-    - ${{ compiler('rust') }}
-  host:
-    - python
-    - maturin >=1.7.0,<2.0
-    - pip
-  run:
-    - python
-    - numpy
+        - pip
+      run:
+        - python
+        - numpy
 
-tests:
-  - python:
-      imports:
-        - healpix_geo
-        - healpix_geo.nested
-        - healpix_geo.ring
-        - healpix_geo.slices
-      pip_check: true
+    tests:
+      - python:
+          imports:
+          - healpix_geo
+          - healpix_geo.nested
+          - healpix_geo.ring
+          - healpix_geo.slices
+          pip_check: true
+
+  - package:
+      name: healpix_geo
+      version: ${{ version }}
+
+    requirements:
+      run:
+        - ${{ pin_subpackage("healpix-geo", exact=True) }}
+
 
 about:
   homepage: https://github.com/eopf-dggs/healpix-geo
