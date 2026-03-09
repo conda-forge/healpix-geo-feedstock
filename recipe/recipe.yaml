@@ -54,7 +54,7 @@ outputs:
           pip_check: true
 
   - package:
-      name: ${{ name | lower | replace('-', '_') }}
+      name: ${{ name|lower|replace('-', '_') }}
 
     requirements:
       run:
