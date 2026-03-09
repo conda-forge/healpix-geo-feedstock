@@ -60,6 +60,15 @@ outputs:
       run:
         - ${{ pin_subpackage("healpix-geo", exact=True) }}
 
+    tests:
+      - python:
+          imports:
+          - healpix_geo
+          - healpix_geo.nested
+          - healpix_geo.ring
+          - healpix_geo.slices
+          pip_check: true
+
 about:
   homepage: https://github.com/eopf-dggs/healpix-geo
   summary: 'healpix for the geo-sciences'
