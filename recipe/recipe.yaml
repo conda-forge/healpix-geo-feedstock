@@ -56,6 +56,9 @@ outputs:
   - package:
       name: ${{ name|lower|replace('-', '_') }}
 
+    build:
+      noarch: generic
+
     requirements:
       run:
         - ${{ pin_subpackage("healpix-geo", exact=True) }}
@@ -64,10 +67,11 @@ outputs:
       - python:
           imports:
           - healpix_geo
-          - healpix_geo.nested
-          - healpix_geo.ring
-          - healpix_geo.slices
           pip_check: true
+
+    about:
+      license_file:
+        - LICENSE
 
 about:
   homepage: https://github.com/eopf-dggs/healpix-geo
