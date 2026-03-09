@@ -2,6 +2,14 @@ context:
   name: healpix-geo
   version: "0.0.11"
 
+source:
+  url: https://github.com/eopf-dggs/healpix-geo/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 3b929838f117c9456d8e90ac4ae6800a7a923c24710ddf2d886e2535b9266ea4
+
+recipe:
+  name: ${{ name | lower }}
+  version: ${{ version }}
+
 build:
   number: 1
 
@@ -11,11 +19,6 @@ build:
 outputs:
   - package:
       name: ${{ name|lower }}
-      version: ${{ version }}
-
-    source:
-      url: https://github.com/eopf-dggs/healpix-geo/archive/refs/tags/v${{ version }}.tar.gz
-      sha256: 3b929838f117c9456d8e90ac4ae6800a7a923c24710ddf2d886e2535b9266ea4
 
     build:
       script:
@@ -51,8 +54,7 @@ outputs:
           pip_check: true
 
   - package:
-      name: healpix_geo
-      version: ${{ version }}
+      name: ${{ name | lower | replace('-', '_') }}
 
     requirements:
       run:
