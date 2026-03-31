@@ -1,6 +1,6 @@
 context:
   name: healpix-geo
-  version: "0.0.11"
+  version: "0.1.0"
 
 package:
   name: ${{ name|lower }}
@@ -8,14 +8,14 @@ package:
 
 source:
   url: https://github.com/eopf-dggs/healpix-geo/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 3b929838f117c9456d8e90ac4ae6800a7a923c24710ddf2d886e2535b9266ea4
+  sha256: 8eb0b2c23bcd675ade118ebd4513ce4289e43ce59c7ae196c4f1b2df31057d88
 
 build:
   skip:
     - match(python, "<3.10")
   script:
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
-    - python -m pip install . -vv --no-build-isolation --no-deps
+    - python -m pip install python/healpix-geo -vv --no-build-isolation --no-deps
   number: 0
 
 requirements:
@@ -43,7 +43,10 @@ tests:
         - healpix_geo
         - healpix_geo.nested
         - healpix_geo.ring
+        - healpix_geo.zuniq
         - healpix_geo.slices
+        - healpix_geo.geometry
+        - healpix_geo.auto
       pip_check: true
 
 about:
