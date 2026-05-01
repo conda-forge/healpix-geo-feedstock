@@ -1,10 +1,10 @@
 context:
   name: healpix-geo
-  version: "0.1.2"
+  version: "0.1.2post0"
 
 package:
   name: ${{ name|lower }}
-  version: ${{ version }}
+  version: "0.1.2"
 
 source:
   url: https://github.com/eopf-dggs/healpix-geo/archive/refs/tags/v${{ version }}.tar.gz
