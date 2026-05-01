@@ -1,14 +1,14 @@
 context:
   name: healpix-geo
-  version: "0.1.2"
+  version: "0.1.2post0"
 
 package:
   name: ${{ name|lower }}
-  version: ${{ version }}
+  version: "0.1.2"
 
 source:
   url: https://github.com/eopf-dggs/healpix-geo/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 55676012b5f1efa9f3d202770a4db109b3cb16ea5d182013e6c919d06fbdaebb
+  sha256: f39c3c4b7a4d2da8d55f054dc309ebae70e0d0fd5b718c4c0d0b282b08986319
 
 build:
   skip:
@@ -16,7 +16,7 @@ build:
   script:
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - python -m pip install python/healpix-geo -vv --no-build-isolation --no-deps
-  number: 0
+  number: 1
 
 requirements:
   build:
