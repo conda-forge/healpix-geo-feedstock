@@ -1,6 +1,6 @@
 context:
   name: healpix-geo
-  version: "0.1.2post0"
+  version: "0.1.2"
 
 package:
   name: ${{ name|lower }}
