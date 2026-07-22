@@ -12,10 +12,11 @@ source:
 
 build:
   skip:
-    - match(python, "<3.10")
+    - is_abi3 and not is_python_min
   script:
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
-    - python -m pip install python/healpix-geo -vv --no-build-isolation --no-deps
+  python:
+    version_independent: ${{ is_abi3 }}
   number: 1
 
 requirements:
