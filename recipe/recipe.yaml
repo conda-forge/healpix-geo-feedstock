@@ -7,7 +7,7 @@ package:
   version: "0.1.2"
 
 source:
-  url: https://github.com/eopf-dggs/healpix-geo/archive/refs/tags/v${{ version }}.tar.gz
+  url: https://github.com/grid4earth/healpix-geo/archive/refs/tags/v${{ version }}.tar.gz
   sha256: 6b4f7d31963c7c5366042183cfa8351954791a562fbd23db9da42c97977ba092
 
 build:
