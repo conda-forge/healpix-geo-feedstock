@@ -1,14 +1,14 @@
 context:
   name: healpix-geo
-  version: "2026.5.1"
+  version: "0.2.1"
 
 package:
   name: ${{ name|lower }}
-  version: "0.1.2"
+  version: ${{ version }}
 
 source:
   url: https://github.com/grid4earth/healpix-geo/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 6b4f7d31963c7c5366042183cfa8351954791a562fbd23db9da42c97977ba092
+  sha256: be27371c9d51ade19df5a60082f4106571376c986d6cb59d83019726b2e61736
 
 build:
   skip:
