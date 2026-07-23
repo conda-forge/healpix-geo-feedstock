@@ -38,6 +38,7 @@ requirements:
   run:
     - python
     - numpy
+    - marray-python
 
 tests:
   - python:
