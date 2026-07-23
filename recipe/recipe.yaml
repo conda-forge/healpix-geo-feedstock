@@ -47,7 +47,6 @@ tests:
         - healpix_geo.nested
         - healpix_geo.ring
         - healpix_geo.zuniq
-        - healpix_geo.slices
         - healpix_geo.geometry
         - healpix_geo.auto
       pip_check: true
