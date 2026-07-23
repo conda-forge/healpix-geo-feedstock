@@ -1,21 +1,23 @@
 context:
   name: healpix-geo
-  version: "0.1.2post0"
+  version: "0.2.1"
 
 package:
   name: ${{ name|lower }}
-  version: "0.1.2"
+  version: ${{ version }}
 
 source:
-  url: https://github.com/eopf-dggs/healpix-geo/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: f39c3c4b7a4d2da8d55f054dc309ebae70e0d0fd5b718c4c0d0b282b08986319
+  url: https://github.com/grid4earth/healpix-geo/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: be27371c9d51ade19df5a60082f4106571376c986d6cb59d83019726b2e61736
 
 build:
   skip:
-    - match(python, "<3.10")
+    - is_abi3 and not is_python_min
   script:
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - python -m pip install python/healpix-geo -vv --no-build-isolation --no-deps
+  python:
+    version_independent: ${{ is_abi3 }}
   number: 1
 
 requirements:
@@ -36,6 +38,7 @@ requirements:
   run:
     - python
     - numpy
+    - marray-python
 
 tests:
   - python:
@@ -44,13 +47,12 @@ tests:
         - healpix_geo.nested
         - healpix_geo.ring
         - healpix_geo.zuniq
-        - healpix_geo.slices
         - healpix_geo.geometry
         - healpix_geo.auto
       pip_check: true
 
 about:
-  homepage: https://github.com/eopf-dggs/healpix-geo
+  homepage: https://github.com/grid4earth/healpix-geo
   summary: 'healpix for the geo-sciences'
   description: |
     healpix-geo uses the cdshealpix, moc, and geodesy crates to provide
@@ -60,7 +62,7 @@ about:
     - LICENSE
     - THIRDPARTY.yml
   documentation: https://healpix-geo.readthedocs.io/
-  repository: https://github.com/eopf-dggs/healpix-geo
+  repository: https://github.com/grid4earth/healpix-geo
 
 extra:
   recipe-maintainers:
