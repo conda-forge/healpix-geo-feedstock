@@ -51,7 +51,7 @@ tests:
       pip_check: true
 
 about:
-  homepage: https://github.com/eopf-dggs/healpix-geo
+  homepage: https://github.com/grid4earth/healpix-geo
   summary: 'healpix for the geo-sciences'
   description: |
     healpix-geo uses the cdshealpix, moc, and geodesy crates to provide
@@ -61,7 +61,7 @@ about:
     - LICENSE
     - THIRDPARTY.yml
   documentation: https://healpix-geo.readthedocs.io/
-  repository: https://github.com/eopf-dggs/healpix-geo
+  repository: https://github.com/grid4earth/healpix-geo
 
 extra:
   recipe-maintainers:
