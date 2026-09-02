@@ -15,7 +15,7 @@ build:
     - is_abi3 and not is_python_min
   script:
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
-    - python -m pip install healpix-geo-python -vv --no-build-isolation --no-deps
+    - python -m pip install ./healpix-geo-python -vv --no-build-isolation --no-deps
   python:
     version_independent: ${{ is_abi3 }}
   number: 0
