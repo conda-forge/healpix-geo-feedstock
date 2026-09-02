@@ -1,24 +1,24 @@
 context:
   name: healpix-geo
-  version: "0.3.0"
+  version: "0.4.0"
 
 package:
   name: ${{ name|lower }}
   version: ${{ version }}
 
 source:
-  url: https://github.com/grid4earth/healpix-geo/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 54e2cf03be2ae9a007eab962cffa1df9e6742e50b2e0edbca258eb5f332d45e9
+  url: https://github.com/grid4earth/healpix-geo/archive/refs/tags/python-v${{ version }}.tar.gz
+  sha256: bf8c5e1abdf1270631653837a5462c4fb8664d296dad1f096d012c99b077fe7c
 
 build:
   skip:
     - is_abi3 and not is_python_min
   script:
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
-    - python -m pip install python/healpix-geo -vv --no-build-isolation --no-deps
+    - python -m pip install ./healpix-geo-python -vv --no-build-isolation --no-deps
   python:
     version_independent: ${{ is_abi3 }}
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -39,9 +39,18 @@ requirements:
     - python
     - numpy
     - marray-python
+  run_constraints:
+    - awkward
+    - ragged
+    - shapely
 
 tests:
   - python:
+      python_version:
+        - if: is_abi3
+          then: ${{ python_min }}.*
+        - "*"
+
       imports:
         - healpix_geo
         - healpix_geo.nested
@@ -49,6 +58,8 @@ tests:
         - healpix_geo.zuniq
         - healpix_geo.geometry
         - healpix_geo.auto
+        - healpix_geo.topology
+        - healpix_geo.ellipsoid
       pip_check: true
 
 about:
