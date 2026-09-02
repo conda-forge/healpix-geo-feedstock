@@ -43,7 +43,8 @@ requirements:
 tests:
   - python:
       python_version:
-        - ${{ python_min }}.*
+        - if: is_abi3
+          then: ${{ python_min }}.*
         - "*"
 
       imports:
