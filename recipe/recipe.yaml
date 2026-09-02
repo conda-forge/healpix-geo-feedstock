@@ -42,6 +42,10 @@ requirements:
 
 tests:
   - python:
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
+
       imports:
         - healpix_geo
         - healpix_geo.nested
