@@ -39,6 +39,10 @@ requirements:
     - python
     - numpy
     - marray-python
+  run_constraints:
+    - awkward
+    - ragged
+    - shapely
 
 tests:
   - python:
