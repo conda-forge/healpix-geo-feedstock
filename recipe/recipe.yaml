@@ -53,6 +53,8 @@ tests:
         - healpix_geo.zuniq
         - healpix_geo.geometry
         - healpix_geo.auto
+        - healpix_geo.topology
+        - healpix_geo.ellipsoid
       pip_check: true
 
 about:
