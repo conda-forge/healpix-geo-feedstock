@@ -1,6 +1,6 @@
 context:
   name: healpix-geo
-  version: "0.4.1"
+  version: "0.5.0"
 
 package:
   name: ${{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/grid4earth/healpix-geo/archive/refs/tags/python-v${{ version }}.tar.gz
-  sha256: 4bf155b80988c8001550309a15197c944d3d63bd2ca2a4971450147055844ecd
+  sha256: 2e63b0545d34842b2df891f6282f1125840b2fc689783cedacb9a3dc47621555
 
 build:
   skip:
@@ -18,7 +18,7 @@ build:
     - python -m pip install ./healpix-geo-python -vv --no-build-isolation --no-deps
   python:
     version_independent: ${{ is_abi3 }}
-  number: 1
+  number: 0
 
 requirements:
   build:
